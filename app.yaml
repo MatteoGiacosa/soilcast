@@ -1,0 +1,30 @@
+runtime: php82
+instance_class: F2
+service: api-backend
+env: standard
+
+runtime_config:
+  document_root: .
+
+build_env_variables:
+  GOOGLE_COMPOSER_VERSION: 2.2.1
+
+env_variables:
+  APP_ENV: production
+  APP_KEY: base64:LeEt99ai6RodkJo23v8WzwhnU0VcP/Ba8UkCWDWpZCE=
+  APP_URL: https://www.soilcast.co/api
+
+  DB_CONNECTION: mysql
+  DB_HOST: 34.154.118.181
+  DB_PORT: 3306
+  DB_DATABASE: soilcast
+  DB_USERNAME: SoilCast_DB
+  DB_PASSWORD:
+
+handlers:
+  - url: /.*
+    script: auto
+
+  - url: /(.*\.(ico|jpg|png|gif|bmp|js|css|html|woff|woff2|ttf|svg|eot))$
+    static_files: public/\1
+    upload: public/(.*\.(ico|jpg|png|gif|bmp|js|css|html|woff|woff2|ttf|svg|eot))$
