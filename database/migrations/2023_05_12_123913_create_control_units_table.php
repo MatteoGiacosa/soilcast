@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use DB;
 
 return new class extends Migration
 {
@@ -12,7 +13,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('control_units', function (Blueprint $table) {
+        DB::statement('SET SESSION sql_require_primary_key=0');
+        Schema::create('control_units', function (Blueprint $table) { 
             $table->id();
             $table->string('name');
             $table->string('address');
