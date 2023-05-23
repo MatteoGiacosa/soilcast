@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Zone;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class ZoneController extends Controller
 {
@@ -19,24 +22,30 @@ class ZoneController extends Controller
     }
 
     public function store(Request $request)
-{
-    $zone = new Zone;
-    $zone->zoneName = $request->input('zoneName');
-    $zone->connected = $request->input('connected');
-    $zone->image = $request->input('image');
-    $zone->nextWatering = $request->input('nextWatering');
-    $zone->lastWatering = $request->input('lastWatering');
-    $zone->latWateringStart = $request->input('latWateringStart');
-    $zone->control_unit_id = $request->input('control_unit_id');
-    $zone->save();
-
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Zone created successfully',
-        'zone' => $zone
-    ], 201);
-}
-
+    {
+        $zone = new Zone;
+        $zone->zoneName = $request->input('zoneName');
+        $zone->connected = $request->input('connected');
+    
+        // Store the image and save the URL in the database
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('public/images');
+            $zone->image = Storage::url($imagePath);
+        }
+    
+        $zone->nextWatering = $request->input('nextWatering');
+        $zone->lastWatering = $request->input('lastWatering');
+        $zone->latWateringStart = $request->input('latWateringStart');
+        $zone->control_unit_id = $request->input('control_unit_id');
+        $zone->save();
+    
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Zone created successfully',
+            'zone' => $zone
+        ], 201);
+    }    
 
     public function update(Request $request, Zone $zone)
     {

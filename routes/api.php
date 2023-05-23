@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ControlUnitController;
@@ -113,6 +115,23 @@ Route::delete('/controlUnits/{id}', function ($id) {
 
 
 //zone
+Route::get('/storage/images/{filename}', function ($filename)
+{
+    $path = storage_path('app/public/images/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
 Route::get('/zones', [ZoneController::class, 'index']);
 Route::get('/zones/{zone}', [ZoneController::class, 'show']);
 Route::post('/zones', [ZoneController::class, 'store']);

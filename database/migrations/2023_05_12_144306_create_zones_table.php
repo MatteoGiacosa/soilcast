@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('zoneName');
             $table->boolean('connected')->nullable();
-            $table->binary('image');
+            $table->string('image'); // change here
             $table->time('nextWatering', $precision = 0)->nullable();
             $table->time('lastWatering', $precision = 0)->nullable();
             $table->time('latWateringStart', $precision = 0)->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->foreign('control_unit_id')->references('id')->on('control_units');
         });
     }
+
 
     /**
      * Reverse the migrations.
