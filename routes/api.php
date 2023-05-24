@@ -12,12 +12,14 @@ use App\Http\Controllers\SensorController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HumidityLogController;
 
 use App\Models\ControlUnit;
 use App\Models\Sensor;
 use App\Models\Statistic;
 use App\Models\User;
 use App\Models\Zone;
+use App\Models\HumidityLog;
 
 
 /*
@@ -195,3 +197,6 @@ Route::put('/statistics/{id}', [StatisticController::class, 'update']);
 Route::delete('/statistics/{id}', [StatisticController::class, 'destroy']);
 
 Route::get('/weather', [WeatherController::class, 'fetchWeatherByCoordinates']);
+
+//logs
+Route::post('/humidity-logs', [HumidityLogController::class, 'store']);

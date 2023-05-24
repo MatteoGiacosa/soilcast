@@ -5,18 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Statistic extends Model
+class HumidityLog extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'collectionTime',
         'humidity',
-        'sensor_id'
+        'recorded_at',
     ];
-
-    public function statistic()
-    {
-        return $this->belongsTo(Sensor::class);
-    }
 }

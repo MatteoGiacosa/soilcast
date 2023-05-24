@@ -34,8 +34,8 @@ class StatisticController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $request->validate([
-            'date' => 'required|date_format:H:i:s',
-            'valueDate' => 'required|numeric',
+            'collectionTime' => 'required|date_format:H:i:s',
+            'humidity' => 'required|numeric',
             'sensor_id' => 'required|exists:sensors,id',
         ]);
 
@@ -50,8 +50,8 @@ class StatisticController extends Controller
     public function update(Request $request, string $id): JsonResponse
     {
         $validatedData = $request->validate([
-            'date' => 'required|date_format:H:i:s',
-            'valueDate' => 'required|numeric',
+            'collectionTime' => 'required|date_format:H:i:s',
+            'humidity' => 'required|numeric',
             'sensor_id' => 'required|exists:sensors,id',
         ]);
 

@@ -15,8 +15,8 @@ return new class extends Migration
         DB::statement('SET SESSION sql_require_primary_key=0');
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->time('date');
-            $table->double('valueDate');
+            $table->time('collectionTime');
+            $table->double('humidity');
             $table->timestamps();
 
             $table->unsignedBigInteger('sensor_id');

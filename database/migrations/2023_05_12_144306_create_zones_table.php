@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('zoneName');
             $table->boolean('connected')->nullable();
-            $table->string('image'); // change here
+            $table->string('image');
             $table->time('nextWatering', $precision = 0)->nullable();
             $table->time('lastWatering', $precision = 0)->nullable();
             $table->time('latWateringStart', $precision = 0)->nullable();
