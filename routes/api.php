@@ -199,4 +199,5 @@ Route::delete('/statistics/{id}', [StatisticController::class, 'destroy']);
 Route::get('/weather', [WeatherController::class, 'fetchWeatherByCoordinates']);
 
 //logs
+Route::get('/humidity-logs', [HumidityLogController::class, 'index']);
 Route::post('/humidity-logs', [HumidityLogController::class, 'store']);

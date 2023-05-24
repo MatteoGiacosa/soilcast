@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Log;
 
 class HumidityLogController extends Controller
 {
+
+    public function index()
+    {
+        $logs = HumidityLog::all();
+        return response()->json($logs, 200);
+    }
+
     public function store(Request $request)
     {
         // validate the request data
