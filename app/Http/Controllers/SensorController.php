@@ -29,7 +29,7 @@ public function store(StoreZoneRequest $request)
     $zone = Zone::where('zoneName', $request->zoneName)->firstOrFail();
 
     $sensor = new Sensor;
-    $sensor->connected = $request->connected;
+    $sensor->mac = $request->mac;
     $sensor->battery = $request->battery;
     $sensor->humidityPercentage = $request->humidityPercentage;
     $sensor->latestDataCollection = $request->latestDataCollection;
@@ -46,7 +46,7 @@ public function store(StoreZoneRequest $request)
     public function update(Request $request, Sensor $sensor)
     {
         $validatedData = $request->validate([
-            'connected' => 'sometimes|required|boolean',
+            'mac' => 'sometimes|required|string',
             'battery' => 'sometimes|required|numeric',
             'humidityPercentage' => 'sometimes|required|numeric',
             'latestDataCollection' => 'sometimes|required|date_format:H:i:s',

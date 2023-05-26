@@ -20,6 +20,7 @@ use App\Models\Statistic;
 use App\Models\User;
 use App\Models\Zone;
 use App\Models\HumidityLog;
+use App\Models\Weather;
 
 
 /*
@@ -196,7 +197,7 @@ Route::post('/statistics', [StatisticController::class, 'store']);
 Route::put('/statistics/{id}', [StatisticController::class, 'update']);
 Route::delete('/statistics/{id}', [StatisticController::class, 'destroy']);
 
-Route::get('/weather', [WeatherController::class, 'fetchWeatherByCoordinates']);
+Route::get('/weather/{controlUnitId}/{zip}/{country}', [WeatherController::class, 'getWeatherData']);
 
 //logs
 Route::get('/humidity-logs', [HumidityLogController::class, 'index']);

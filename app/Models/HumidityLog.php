@@ -12,5 +12,11 @@ class HumidityLog extends Model
     protected $fillable = [
         'humidity',
         'recorded_at',
+        'sensor_id'
     ];
+
+    public function sensor()
+    {
+        return $this->belongsTo(Sensor::class);
+    }
 }

@@ -2,31 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Weather;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class WeatherController extends Controller
 {
-    public function fetchWeatherByCoordinates(Request $request)
+    public function getWeatherData($controlUnitId, $zipCode, $countryCode)
     {
-        $latitude = $request->query('latitude');
-        $longitude = $request->query('longitude');
-        $apiKey = 'f4b6f7094c0e4bd9e24f56f5dff387ee';
-        $url = "http://api.openweathermap.org/data/2.5/weather?lat={$latitude}&lon={$longitude}&appid={$apiKey}&units=metric";
-        try {
-            $response = Http::get($url);
-            if($response->successful()) {
-                $weatherData = $response->json();
-                $temperature = round($weatherData['main']['temp']) . "°C";
-                $weatherIcon = $weatherData['weather'][0]['icon'] ?? "";
-                return response()->json([
-                    'temperature' => $temperature,
-                    'weatherIcon' => $weatherIcon,
-                ]);
-            }
-            return response()->json(['message' => 'Failed to fetch weather data'], 500);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'An error occurred while retrieving weather data'], 500);
+        $geolocationResponse = Http::get('http://api.openweathermap.org/geo/1.0/zip', [
+            'zip' => $zipCode.','.$countryCode,
+            'appid' => 'f4b6f7094c0e4bd9e24f56f5dff387ee',
+        ]);
+
+        if (!$geolocationResponse->successful()) {
+            return response()->json(['error' => 'Unable to get geolocation data'], 500);
         }
+
+        $geolocationData = $geolocationResponse->json();
+
+        $weatherResponse = Http::get('http://api.openweathermap.org/data/2.5/weather', [
+            'lat' => $geolocationData['lat'],
+            'lon' => $geolocationData['lon'],
+            'appid' => 'f4b6f7094c0e4bd9e24f56f5dff387ee',
+        ]);
+
+        if (!$weatherResponse->successful()) {
+            return response()->json(['error' => 'Unable to get weather data'], 500);
+        }
+
+        $weatherData = Weather::create([
+            'zip_code' => $zipCode,
+            'country_code' => $countryCode,
+            'lat' => $geolocationData['lat'],
+            'lon' => $geolocationData['lon'],
+            'data' => $weatherResponse->json(),
+            'control_unit_id' => $controlUnitId,
+        ]);
+
+        return response()->json($weatherData, 200);
     }
+
+
 }

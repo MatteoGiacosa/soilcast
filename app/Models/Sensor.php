@@ -10,7 +10,7 @@ class Sensor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'connected',
+        'mac',
         'battery',
         'humidityPercentage',
         'latestDataCollection',

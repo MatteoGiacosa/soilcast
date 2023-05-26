@@ -10,23 +10,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         DB::statement('SET SESSION sql_require_primary_key=0');
-        Schema::create('sensors', function (Blueprint $table) {
+        Schema::create('weathers', function (Blueprint $table) {
             $table->id();
-            $table->string('mac')->nullable();
-            $table->double('battery')->nullable();
-            $table->double('humidityPercentage')->nullable();
-            $table->time('latestDataCollection')->nullable();
+            $table->string('zip_code');
+            $table->string('country_code');
+            $table->json('data');
             $table->timestamps();
 
-            $table->unsignedBigInteger('control_unit_id');
+            $table->unsignedBigInteger('control_unit_id')->nullable();
             $table->foreign('control_unit_id')->references('id')->on('control_units');
-
-            $table->unsignedBigInteger('zone_id');
-            $table->foreign('zone_id')->references('id')->on('zones');
-
         });
     }
 
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sensors');
+        Schema::dropIfExists('weathers');
     }
 };

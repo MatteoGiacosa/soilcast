@@ -11,7 +11,6 @@ class ControlUnit extends Model
     protected $fillable = ['name', 'address', 'city', 'cap', 'country', 'user_id'];
     protected $with = array('zones');
 
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -25,5 +24,10 @@ class ControlUnit extends Model
     public function zones()
     {
         return $this->hasMany(Zone::class);
+    }
+
+    public function weather()
+    {
+        return $this->hasOne(Weather::class);
     }
 }
