@@ -7,6 +7,7 @@ use onesignal\client\Configuration;
 use onesignal\client\model\Notification;
 use onesignal\client\model\StringMap;
 use GuzzleHttp;
+use App\Http\Controllers\NotificationController;
 
 class OneSignalService
 {
