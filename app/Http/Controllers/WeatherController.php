@@ -40,6 +40,13 @@ class WeatherController extends Controller
             'control_unit_id' => $controlUnitId,
         ]);
 
+        $weatherHistoryData = WeatherHistory::create([
+            'weather_id' => $weatherData->id,
+            'temperature' => $weatherResponse->json()['main']['temp'], // adjust according to actual data structure
+            'recorded_at' => now(),
+        ]);
+        
+
         return response()->json($weatherData, 200);
     }
 

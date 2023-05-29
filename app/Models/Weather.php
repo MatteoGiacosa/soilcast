@@ -21,4 +21,10 @@ class Weather extends Model
     {
         return $this->belongsTo(ControlUnit::class);
     }
+
+    public function history()
+    {
+        return $this->hasMany(WeatherHistory::class);
+    }
+
 }
