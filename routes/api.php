@@ -207,5 +207,6 @@ Route::get('/humidity-logs', [HumidityLogController::class, 'index']);
 Route::post('/humidity-logs', [HumidityLogController::class, 'store']);
 
 //notifications
-Route::get('/get-notification-preferences', 'NotificationController@getPreferences');
-Route::post('/create-notification', 'NotificationController@createNotification');
+Route::get('/get-notification-preferences', [NotificationController::class, 'getPreferences']);
+Route::post('/update-notification-preferences', [NotificationController::class, 'updatePreferences']);
+Route::post('/create-notification', [NotificationController::class, 'createNotification']);
