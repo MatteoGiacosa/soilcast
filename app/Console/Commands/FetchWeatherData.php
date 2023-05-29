@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Http\Controllers\WeatherController;
-use App\Models\ControlUnit;  // Make sure to import the ControlUnit model
+use App\Models\ControlUnit;
+use App\Models\WeatherHistory;
 
 class FetchWeatherData extends Command
 {

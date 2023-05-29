@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Weather;
+use App\Models\WeatherHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
