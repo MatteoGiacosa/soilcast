@@ -17,31 +17,6 @@ class UserController extends Controller
 
     public function create(Request $request): JsonResponse
     {
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique:users,email',
-        //     'password' => 'required',
-        //     'firebase_id' => 'required'
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'message' => 'I dati inseriti non sono validi',
-        //         'errors' => $validator->errors(),
-        //     ], 422);
-        // }
-
-        // $user = new User();
-        // $user->name = $request->input('name');
-        // $user->email = $request->input('email');
-        // $user->password = Hash::make($request->input('password'));
-        // $user->firebase_id = $request->input('firebase_id');
-        // $user->save();
-
-        // return response()->json([
-        //     'message' => 'Utente creato con successo!',
-        //     'user' => $user,
-        // ], 201);
     }
 
     public function store(Request $request)

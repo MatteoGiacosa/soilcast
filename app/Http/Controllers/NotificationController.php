@@ -16,12 +16,16 @@ class NotificationController extends Controller
 
     public function getPreferences(Request $request)
     {
+        if (!$request->user()) {
+            return response()->json(['message' => 'User is not authenticated.'], 401);
+        }
         // Assuming user_id is authenticated
         $userId = $request->user()->id;
-
         $user = User::findOrFail($userId);
+
         return response()->json($user->only('irrigation_status', 'sensor_low_battery', 'no_signal'));
     }
+
 
     public function updatePreferences(Request $request)
     {
