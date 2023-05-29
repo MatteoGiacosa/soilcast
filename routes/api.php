@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
+use App\Services\OneSignalService;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ControlUnitController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HumidityLogController;
+use App\Http\Controllers\NotificationController;
 
 use App\Models\ControlUnit;
 use App\Models\Sensor;
