@@ -58,11 +58,14 @@ class ZoneController extends Controller
             'latWateringStart' => 'nullable',
             'control_unit_id' => 'exists:control_units,id',
         ]);
-
+    
+        $validatedData['zoneName'] = $request->input('zoneName');
+    
         $zone->update($validatedData);
-
+    
         return response()->json(['data' => $zone], 200);
     }
+    
 
     public function destroy(Zone $zone)
     {

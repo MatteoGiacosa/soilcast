@@ -61,8 +61,4 @@ class WeatherController extends Controller
 
         return response()->json($weatherHistory, 200);
     }
-
-
-
-
 }
