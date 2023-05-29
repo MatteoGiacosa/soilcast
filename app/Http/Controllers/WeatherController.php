@@ -50,5 +50,18 @@ class WeatherController extends Controller
         return response()->json($weatherData, 200);
     }
 
+    public function getWeatherHistory($controlUnitId)
+    {
+
+        $weatherHistory = Weather::where('control_unit_id', $controlUnitId)->orderBy('created_at', 'desc')->get();
+
+        if (!$weatherHistory) {
+            return response()->json(['error' => 'Unable to find weather history for control unit'], 404);
+        }
+
+        return response()->json($weatherHistory, 200);
+    }
+
+
 
 }

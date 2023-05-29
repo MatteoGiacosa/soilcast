@@ -198,6 +198,8 @@ Route::put('/statistics/{id}', [StatisticController::class, 'update']);
 Route::delete('/statistics/{id}', [StatisticController::class, 'destroy']);
 
 Route::get('/weather/{controlUnitId}/{zip}/{country}', [WeatherController::class, 'getWeatherData']);
+Route::get('/weather/history/{controlUnitId}', [WeatherController::class, 'getWeatherHistory']);
+
 
 //logs
 Route::get('/humidity-logs', [HumidityLogController::class, 'index']);
