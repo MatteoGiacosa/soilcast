@@ -42,7 +42,7 @@ class WeatherController extends Controller
             'lon' => $geolocationData['lon'],
             'data' => $weatherResponse->json(),
             'control_unit_id' => $controlUnitId,
-        ]);
+        ]);        
 
         $weatherHistoryData = WeatherHistory::create([
             'weather_id' => $weatherData->id,

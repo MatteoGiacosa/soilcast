@@ -39,12 +39,18 @@ class FetchWeatherData extends Command
      */
     public function handle()
     {
-        $controlUnits = ControlUnit::all();
-
-        foreach($controlUnits as $controlUnit) {
-            app(WeatherController::class)->getWeatherData($controlUnit->id, $controlUnit->zip_code, $controlUnit->country_code);
+        try {
+            $controlUnits = ControlUnit::all(); // Assuming ControlUnit model exists
+    
+            foreach($controlUnits as $controlUnit) {
+                // Use the getWeatherData method of WeatherController
+                app(WeatherController::class)->getWeatherData($controlUnit->id, $controlUnit->zip_code, $controlUnit->country_code);
+            }
+    
+            $this->info('Weather data has been fetched for all control units.');
+    
+        } catch (\Exception $e) {
+            Log::error('Failed to fetch weather data', ['error' => $e->getMessage()]);
         }
-
-        $this->info('Weather data has been fetched for all control units.');
-    }
+    }    
 }
