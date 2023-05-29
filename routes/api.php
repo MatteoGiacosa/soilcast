@@ -200,8 +200,10 @@ Route::delete('/statistics/{id}', [StatisticController::class, 'destroy']);
 Route::get('/weather/{controlUnitId}/{zip}/{country}', [WeatherController::class, 'getWeatherData']);
 Route::get('/weather/history', [WeatherController::class, 'getWeatherHistory']);
 
-
-
 //logs
 Route::get('/humidity-logs', [HumidityLogController::class, 'index']);
 Route::post('/humidity-logs', [HumidityLogController::class, 'store']);
+
+//notifications
+Route::get('/get-notification-preferences', 'NotificationController@getPreferences');
+Route::post('/create-notification', 'NotificationController@createNotification');
