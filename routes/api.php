@@ -159,7 +159,7 @@ Route::post('/sensors', function (Request $request) {
     }
     
     $sensor = new Sensor;
-    $sensor->connected = $request->connected;
+    $sensor->mac = $request->mac;
     $sensor->battery = $request->battery;
     $sensor->humidityPercentage = $request->humidityPercentage;
     $sensor->latestDataCollection = $request->latestDataCollection;
@@ -178,7 +178,7 @@ Route::get('/sensors/{id}', function ($id) {
 
 Route::put('/sensors/{id}', function (Request $request, $id) {
     $sensor = Sensor::findOrFail($id);
-    $sensor->connected = $request->connected;
+    $sensor->mac = $request->mac;
     $sensor->battery = $request->battery;
     $sensor->humidityPercentage = $request->humidityPercentage;
     $sensor->latestDataCollection = $request->latestDataCollection;
