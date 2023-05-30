@@ -12,7 +12,9 @@ class CreateHumidityLogsTable extends Migration
         DB::statement('SET SESSION sql_require_primary_key=0');
         Schema::create('humidity_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('mac');
             $table->integer('humidity');
+            $table->integer('battery');
             $table->timestamp('recorded_at');
             $table->timestamps();
 

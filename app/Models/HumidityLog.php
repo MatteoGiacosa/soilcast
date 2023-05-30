@@ -10,7 +10,9 @@ class HumidityLog extends Model
     use HasFactory;
 
     protected $fillable = [
+        'mac',
         'humidity',
+        'battery',
         'recorded_at',
         'sensor_id'
     ];

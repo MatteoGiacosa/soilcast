@@ -19,16 +19,18 @@ class HumidityLogController extends Controller
     {
         // validate the request data
         $request->validate([
+            'mac' => 'required|string',
             'humidity' => 'required|integer',
+            'battery' => 'required|integer',
             'recorded_at' => 'required|date',
-            'sensor_id' => 'required|integer|exists:sensors,id', // adding sensor_id validation
+            'sensor_id' => 'required|integer|exists:sensors,id', 
         ]);
 
         // create a new log
-        $log = HumidityLog::create($request->only('humidity', 'recorded_at', 'sensor_id')); // including sensor_id
+        $log = HumidityLog::create($request->only('mac', 'humidity', 'battery', 'recorded_at', 'sensor_id'));
 
         // log the data
-        Log::info('New humidity log: ', ['humidity' => $log->humidity, 'recorded_at' => $log->recorded_at, 'sensor_id' => $log->sensor_id]); // logging sensor_id
+        Log::info('New humidity log: ', ['mac' => $log->mac, 'humidity' => $log->humidity, 'battery' => $log->battery, 'recorded_at' => $log->recorded_at, 'sensor_id' => $log->sensor_id]);
 
         // return a response
         return response()->json(['message' => 'Humidity log created successfully.'], 201);
