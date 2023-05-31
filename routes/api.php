@@ -193,6 +193,8 @@ Route::delete('/sensors/{id}', function ($id) {
 });
 
 Route::put('/sensors/{sensor}', [SensorController::class, 'update']);
+Route::patch('/sensors/{sensor}', [SensorController::class, 'partialUpdate']);
+
 
 
 //statistic

@@ -53,6 +53,17 @@ class SensorController extends Controller
         return response()->json($sensor);
     }
 
+    public function partialUpdate(Request $request, Sensor $sensor)
+    {
+        $validatedData = $request->validate([
+            'minHumidity' => 'sometimes|numeric',
+            'maxHumidity' => 'sometimes|numeric',
+            'DataCollection' => 'sometimes|string',
+        ]);
+
+        $sensor->update($validatedData);
+        return response()->json($sensor);
+    }
 
 
     public function destroy(Sensor $sensor)
