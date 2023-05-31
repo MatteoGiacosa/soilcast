@@ -192,6 +192,9 @@ Route::delete('/sensors/{id}', function ($id) {
     return response()->json(['message' => 'Sensor deleted successfully']);
 });
 
+Route::put('/sensors/{sensor}', [SensorController::class, 'update']);
+
+
 //statistic
 Route::get('/statistics', [StatisticController::class, 'index']);
 Route::get('/statistics/{id}', [StatisticController::class, 'show']);
