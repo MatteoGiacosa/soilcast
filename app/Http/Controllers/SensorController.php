@@ -30,9 +30,9 @@ class SensorController extends Controller
 
         $sensor = new Sensor;
         $sensor->mac = $request->mac;
-        $sensor->battery = $request->battery;
-        $sensor->humidityPercentage = $request->humidityPercentage;
-        $sensor->latestDataCollection = $request->latestDataCollection;
+        $sensor->minHumidity = $request->minHumidity;
+        $sensor->maxHumidity = $request->maxHumidity;
+        $sensor->DataCollection = $request->DataCollection;
         $sensor->control_unit_id = $zone->control_unit_id;
         $sensor->zone_id = $zone->id;
         $sensor->save();
@@ -43,12 +43,16 @@ class SensorController extends Controller
     public function update(Request $request, Sensor $sensor)
     {
         $validatedData = $request->validate([
-            'mac' => 'required|string'
+            'mac' => 'required|string',
+            'minHumidity' => 'sometimes|numeric',
+            'maxHumidity' => 'sometimes|numeric',
+            'DataCollection' => 'sometimes|string',
         ]);
 
         $sensor->update($validatedData);
         return response()->json($sensor);
     }
+
 
 
     public function destroy(Sensor $sensor)

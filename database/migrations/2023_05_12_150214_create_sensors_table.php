@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('sensors', function (Blueprint $table) {
             $table->id();
             $table->string('mac')->nullable();
-            $table->double('battery')->nullable();
-            $table->double('humidityPercentage')->nullable();
-            $table->time('latestDataCollection')->nullable();
+            $table->double('minHumidity')->nullable();
+            $table->double('maxHumidity')->nullable();
+            $table->string('DataCollection')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('control_unit_id');

@@ -11,9 +11,9 @@ class Sensor extends Model
 
     protected $fillable = [
         'mac',
-        'battery',
-        'humidityPercentage',
-        'latestDataCollection',
+        'minHumidity',
+        'maxHumidity',
+        'DataCollection',
         'control_unit_id',
         'zone_id'
     ];

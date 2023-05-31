@@ -160,9 +160,9 @@ Route::post('/sensors', function (Request $request) {
     
     $sensor = new Sensor;
     $sensor->mac = $request->mac;
-    $sensor->battery = $request->battery;
-    $sensor->humidityPercentage = $request->humidityPercentage;
-    $sensor->latestDataCollection = $request->latestDataCollection;
+    $sensor->minHumidity = $request->minHumidity;
+    $sensor->maxHumidity = $request->maxHumidity;
+    $sensor->DataCollection = $request->DataCollection;
     $sensor->control_unit_id = $request->control_unit_id;
     $sensor->zone_id = $zone->id;
     
@@ -179,9 +179,9 @@ Route::get('/sensors/{id}', function ($id) {
 Route::put('/sensors/{id}', function (Request $request, $id) {
     $sensor = Sensor::findOrFail($id);
     $sensor->mac = $request->mac;
-    $sensor->battery = $request->battery;
-    $sensor->humidityPercentage = $request->humidityPercentage;
-    $sensor->latestDataCollection = $request->latestDataCollection;
+    $sensor->minHumidity = $request->minHumidity;
+    $sensor->maxHumidity = $request->maxHumidity;
+    $sensor->DataCollection = $request->DataCollection;
     $sensor->save();
     return response()->json($sensor);
 });
