@@ -37,8 +37,13 @@ class SensorController extends Controller
         $sensor->zone_id = $zone->id;
         $sensor->save();
 
+        // Here we update the Zone model with the newly created Sensor's id
+        $zone->sensor_id = $sensor->id;
+        $zone->save();
+
         return response()->json($sensor);
     }
+
 
     public function update(Request $request, Sensor $sensor)
     {
