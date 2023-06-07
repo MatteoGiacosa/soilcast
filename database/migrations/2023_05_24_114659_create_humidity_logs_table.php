@@ -19,7 +19,7 @@ class CreateHumidityLogsTable extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('sensor_id');
-            $table->foreign('sensor_id')->references('id')->on('sensors');
+            $table->foreign('sensor_id')->references('id')->on('sensors')->onDelete('cascade');
         });
     }
 
