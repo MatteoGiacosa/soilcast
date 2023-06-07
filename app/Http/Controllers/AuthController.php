@@ -78,11 +78,11 @@ class AuthController extends Controller
         $user = $request->user();
 
         if ($user) {
+            $user->tokens()->delete();
             $user->delete();
             return response()->json(['message' => 'User deleted'], 204);
         } else {
             return response()->json(['message' => 'User not found'], 404);
         }
     }
-
 }
