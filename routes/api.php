@@ -41,8 +41,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('/user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-Route::delete('/user/{id}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
-
+Route::delete('/user', [AuthController::class, 'destroy'])->middleware('auth:sanctum');
 
 //controlUnit
 Route::get('/controlUnits', function () {

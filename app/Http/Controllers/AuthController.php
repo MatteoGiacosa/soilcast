@@ -72,4 +72,17 @@ class AuthController extends Controller
             'message' => 'Logged out'
         ];
     }
+
+    public function destroy(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user) {
+            $user->delete();
+            return response()->json(['message' => 'User deleted'], 200);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+    }
+
 }
