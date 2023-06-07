@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-    // 'name', 'address', 'city', 'cap', 'country'
     /**
      * Run the migrations.
      */
@@ -24,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
