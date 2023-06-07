@@ -79,7 +79,7 @@ class AuthController extends Controller
 
         if ($user) {
             $user->delete();
-            return response()->json(['message' => 'User deleted'], 200);
+            return response()->json(['message' => 'User deleted'], 204);
         } else {
             return response()->json(['message' => 'User not found'], 404);
         }
