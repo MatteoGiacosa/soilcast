@@ -22,10 +22,10 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger('control_unit_id');
-            $table->foreign('control_unit_id')->references('id')->on('control_units');
+            $table->foreign('control_unit_id')->references('id')->on('control_units')->onDelete('cascade');
 
             $table->unsignedBigInteger('zone_id');
-            $table->foreign('zone_id')->references('id')->on('zones');
+            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
 
         });
     }
